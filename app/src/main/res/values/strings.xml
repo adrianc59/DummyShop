@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DummyApp</string>
+    <string name="servicedesc">Description here</string>
+    <string name="aiddescription">Description here</string>
+</resources>
