@@ -36,9 +36,9 @@ public class ScanActivity extends AppCompatActivity {
     private String message;
 
     private ArrayList<Item> newItemList;
-    private String itemNames;
-    private String itemPrices;
-    private String itemQuantitys;
+    private String itemNames="";
+    private String itemPrices="";
+    private String itemQuantitys="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +58,11 @@ public class ScanActivity extends AppCompatActivity {
             System.out.println("Name: " + e.getName());
             System.out.println("Quantity: " + e.getQuantity());
             //put all names, prices and Quantities of Items into single parsed strings to be put into map
-            itemNames.concat(e.getName()+"@@@");
-            itemPrices.concat(e.getPrice()+"@@@");
-            itemQuantitys.concat(e.getQuantity()+"@@@");
+            itemNames.concat(e.getName()+"@");
+            itemPrices.concat(e.getPrice()+"@");
+            itemQuantitys.concat(+e.getQuantity()+"@");
         }
+
     }
 
     private class createUserAsyncTask extends AsyncTask<String, String, String> {
@@ -88,16 +89,13 @@ public class ScanActivity extends AppCompatActivity {
             JSONObject jsonObject = httpJsonParser.makeHttpRequest("https://mysql03.comp.dkit.ie/D00198128/addReceiptPOS.php", "POST", httpParams);
             try {
                 success = jsonObject.getInt("success");
+                //if insertion fails *set something*
                 if(success == 0){
                     message = jsonObject.getString("message");
                 }
+                //if insertion successful *set something*
                 else{
-                    JSONArray userObjects = jsonObject.getJSONArray("data");
-                    JSONObject userObject = userObjects.getJSONObject(0);
-                    user.setId(userObject.getInt("user_id"));
-                    user.setFirstName(userObject.getString("first_name"));
-                    user.setLastName(userObject.getString("last_name"));
-                    user.setEmail(userObject.getString("email"));
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -111,18 +109,18 @@ public class ScanActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 public void run() {
                     if (success == 1) {
-                        //Display success message
-                        System.out.println("User added");
-                        System.out.println("id:"+user.getId()+" fname:" +user.getFirstName()+" lname:"+user.getLastName() + " email:" + user.getEmail());
+                        //Display success message(if needed)
 
-                        Intent i = new Intent(RegisterActivity.this, RecentTransactionsActivity.class);
-                        i.putExtra("user_id", user.getId());
-                        startActivity(i);
+                        //if success what happens next
+                        //Intent i = new Intent(RegisterActivity.this, RecentTransactionsActivity.class);
+                        //i.putExtra("user_id", user.getId());
+                        //startActivity(i);
                         //Finish ths activity and go back to listing activity
+
                         finish();
 
                     } else {
-                        Toast.makeText(RegisterActivity.this,
+                        Toast.makeText(ScanActivity.this,
                                 message,
                                 Toast.LENGTH_LONG).show();
 
