@@ -49,7 +49,5 @@ public class HostCardEmulatorService extends HostApduService {
         else {
             return Utils.hexStringToByteArray(status_failed);
         }
-
-
     }
 }
