@@ -34,7 +34,7 @@ public class ScanActivity extends AppCompatActivity {
 
     private ProgressDialog pDialog;
     private int success;
-    private String message;
+    private String errorMessage;
 
     private String itemNames="";
     private String itemPrices="";
@@ -98,17 +98,16 @@ public class ScanActivity extends AppCompatActivity {
             httpParams.put("vendor", vendor);
             httpParams.put("itemNames", itemNames);
             httpParams.put("itemPrices", itemPrices);
-            httpParams.put("itemQuantities", itemQuantities);
+            httpParams.put("itemQuantitys", itemQuantities);
             JSONObject jsonObject = httpJsonParser.makeHttpRequest("https://mysql03.comp.dkit.ie/D00198128/addReceiptPOS.php", "POST", httpParams);
             try {
                 success = jsonObject.getInt("success");
                 //if insertion fails *set something*
-                if(success == 0){
-                    message = jsonObject.getString("message");
+                if(success == 1){
                 }
                 //if insertion successful *set something*
                 else{
-
+                    errorMessage = jsonObject.getString("message");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -132,7 +131,7 @@ public class ScanActivity extends AppCompatActivity {
 
                         finish();
                     } else {
-                        Toast.makeText(ScanActivity.this,message,Toast.LENGTH_LONG).show();
+                        Toast.makeText(ScanActivity.this,errorMessage,Toast.LENGTH_LONG).show();
                     }
                 }
             });
