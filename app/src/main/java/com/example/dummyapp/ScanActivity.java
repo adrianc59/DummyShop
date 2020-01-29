@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class ScanActivity extends AppCompatActivity {
 
@@ -31,6 +32,7 @@ public class ScanActivity extends AppCompatActivity {
     private ArrayList<Item> itemList;
     private double total;
     private String paymentType;
+    private String uuidString;
 
     private ProgressDialog pDialog;
     private int success;
@@ -54,13 +56,16 @@ public class ScanActivity extends AppCompatActivity {
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         currentDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
 
+        UUID uuid = UUID.randomUUID();
+        uuidString = uuid.toString();
+
         for(Item e : itemList){
             itemNames = itemNames.concat(e.getName()+"@");
             itemPrices = itemPrices.concat(e.getPrice()+"@");
             itemQuantities = itemQuantities.concat(+e.getQuantity()+"@");
         }
 
-        String message = currentDate + "," + vendor + "," + total;
+        String message = currentDate + "," + vendor + "," + total + "," + uuid.toString();
         String hexMessage = StringToHexadecimal(message);
         HostCardEmulatorService.message = hexMessage;
 
@@ -99,6 +104,7 @@ public class ScanActivity extends AppCompatActivity {
             httpParams.put("itemNames", itemNames);
             httpParams.put("itemPrices", itemPrices);
             httpParams.put("itemQuantitys", itemQuantities);
+            httpParams.put("uuid", uuidString);
             JSONObject jsonObject = httpJsonParser.makeHttpRequest("https://mysql03.comp.dkit.ie/D00198128/addReceiptPOS.php", "POST", httpParams);
             try {
                 success = jsonObject.getInt("success");
