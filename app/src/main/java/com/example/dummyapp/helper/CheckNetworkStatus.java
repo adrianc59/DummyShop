@@ -11,7 +11,7 @@ public class CheckNetworkStatus {
     public static boolean isNetworkAvailable(Context context){
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         Network activeNetwork = connectivityManager.getActiveNetwork();
-        
+
         return activeNetwork != null;
 
         //NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetwork();
