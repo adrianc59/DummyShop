@@ -15,17 +15,22 @@ public class MainActivity extends AppCompatActivity {
 
     private Button shopBtn;
 
+    private Session session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        session = new Session(this);
+        session.setScanned(false);
 
         shopBtn = findViewById(R.id.shopBtn);
 
         shopBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ShopActivity.class);
+                Intent intent = new Intent(MainActivity.this, VendorActivity.class);
                 startActivity(intent);
             }
         });

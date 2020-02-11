@@ -17,10 +17,14 @@ public class HostCardEmulatorService extends HostApduService {
     private static String default_cla = "00";
     private static int min_apdu_length = 12;
 
+    private Session session;
+
     @Override
     public void onDeactivated(int i) {
         message = "";
-        Log.d(tag, "Deactivated: " + i);
+        session = new Session(this);
+
+        session.setScanned(true);
     }
 
     @Override

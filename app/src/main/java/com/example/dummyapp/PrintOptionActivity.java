@@ -15,6 +15,7 @@ public class PrintOptionActivity extends AppCompatActivity {
     private Button popBtn;
     private Button paperBtn;
 
+    private String vendor;
     private String paymentType;
     private ArrayList<Item> itemList;
     private double total;
@@ -25,6 +26,7 @@ public class PrintOptionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_print_option);
 
         Intent intent = getIntent();
+        vendor = intent.getStringExtra("VENDOR");
         Bundle args = intent.getBundleExtra("BUNDLE");
         itemList = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
         total = intent.getDoubleExtra("TOTAL", 0);
@@ -37,6 +39,7 @@ public class PrintOptionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PrintOptionActivity.this, ScanActivity.class);
+                intent.putExtra("VENDOR", vendor);
                 Bundle args = new Bundle();
                 args.putSerializable("ARRAYLIST", (Serializable)itemList);
                 intent.putExtra("BUNDLE", args);

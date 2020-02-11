@@ -6,14 +6,17 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Toast;
 
+import com.example.dummyapp.helper.CheckNetworkStatus;
 import com.example.dummyapp.helper.HttpJsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,7 +29,7 @@ import java.util.UUID;
 
 public class ScanActivity extends AppCompatActivity {
 
-    private String vendor = "Tesco";
+    private String vendor;
     private String currentDate;
     private String currentDateTime;
     private ArrayList<Item> itemList;
@@ -42,12 +45,19 @@ public class ScanActivity extends AppCompatActivity {
     private String itemPrices="";
     private String itemQuantities="";
 
+    private Handler handler = new Handler();
+    private int delay = 1000; //milliseconds
+    private Session session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
 
+        session = new Session(this);
+
         Intent intent = getIntent();
+        vendor = intent.getStringExtra("VENDOR");
         Bundle args = intent.getBundleExtra("BUNDLE");
         itemList = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
         total = intent.getDoubleExtra("TOTAL", 0);
@@ -68,8 +78,30 @@ public class ScanActivity extends AppCompatActivity {
         String message = currentDate + "," + vendor + "," + total + "," + uuid.toString();
         String hexMessage = StringToHexadecimal(message);
         HostCardEmulatorService.message = hexMessage;
+    
+        if (CheckNetworkStatus.isNetworkAvailable(getApplicationContext())) {
+            new createUserAsyncTask().execute();
+        } else {
+            Toast.makeText(ScanActivity.this,"Unable to connect to internet", Toast.LENGTH_LONG).show();
+        }
 
-        //createUserAsyncTask()
+        handler.postDelayed(new Runnable(){
+            public void run(){
+                if(session.getScanned() == true){
+                    session.setScanned(false);
+                    Intent intent = new Intent(ScanActivity.this, RescanActivity.class);
+                    intent.putExtra("VENDOR", vendor);
+                    Bundle args = new Bundle();
+                    args.putSerializable("ARRAYLIST", (Serializable)itemList);
+                    intent.putExtra("BUNDLE", args);
+                    intent.putExtra("TOTAL", total);
+                    intent.putExtra("PAYMENT_TYPE", paymentType);
+                    startActivity(intent);
+                }
+
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
     }
 
     private String StringToHexadecimal(String str){
@@ -82,6 +114,8 @@ public class ScanActivity extends AppCompatActivity {
         }
         return sb.toString();
     }
+
+
 
     private class createUserAsyncTask extends AsyncTask<String, String, String> {
         @Override
@@ -101,10 +135,13 @@ public class ScanActivity extends AppCompatActivity {
             Map<String, String> httpParams = new HashMap<>();
             httpParams.put("date", currentDateTime);
             httpParams.put("vendor", vendor);
-            httpParams.put("itemNames", itemNames);
-            httpParams.put("itemPrices", itemPrices);
-            httpParams.put("itemQuantitys", itemQuantities);
             httpParams.put("uuid", uuidString);
+            httpParams.put("item_names", itemNames);
+            httpParams.put("item_prices", itemPrices);
+            httpParams.put("item_quantitys", itemQuantities);
+
+            //Add generated barcode
+
             JSONObject jsonObject = httpJsonParser.makeHttpRequest("https://mysql03.comp.dkit.ie/D00198128/addReceiptPOS.php", "POST", httpParams);
             try {
                 success = jsonObject.getInt("success");
@@ -135,8 +172,9 @@ public class ScanActivity extends AppCompatActivity {
                         //startActivity(i);
                         //Finish ths activity and go back to listing activity
 
-                        finish();
+                        //finish();
                     } else {
+                        System.out.println("error : " + errorMessage.toString());
                         Toast.makeText(ScanActivity.this,errorMessage,Toast.LENGTH_LONG).show();
                     }
                 }

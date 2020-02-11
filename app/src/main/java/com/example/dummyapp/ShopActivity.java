@@ -25,8 +25,18 @@ public class ShopActivity extends AppCompatActivity {
     private Button btn2;
     private Button btn3;
     private Button btn4;
+    private Button btn5;
+    private Button btn6;
+    private Button btn7;
+    private Button btn8;
+    private Button btn9;
+    private Button btn10;
+    private Button btn11;
+    private Button btn12;
 
     private Button checkoutBtn;
+
+    private String vendor;
 
     private LinearLayout layout;
     private double total;
@@ -39,10 +49,21 @@ public class ShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
+        Intent intent = getIntent();
+        vendor = intent.getStringExtra("VENDOR");
+
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
         btn3 = findViewById(R.id.btn3);
         btn4 = findViewById(R.id.btn4);
+        btn5 = findViewById(R.id.btn5);
+        btn6 = findViewById(R.id.btn6);
+        btn7 = findViewById(R.id.btn7);
+        btn8 = findViewById(R.id.btn8);
+        btn9 = findViewById(R.id.btn9);
+        btn10 = findViewById(R.id.btn10);
+        btn11 = findViewById(R.id.btn11);
+        btn12 = findViewById(R.id.btn12);
 
         checkoutBtn = findViewById(R.id.checkoutBtn);
 
@@ -173,10 +194,259 @@ public class ShopActivity extends AppCompatActivity {
             }
         });
 
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout = findViewById(R.id.itemLayout);
+                layout.addView(createNewTextView("Soup:\t\t2.00"));
+                total += 2.00;
+                totalView = findViewById(R.id.totalView);
+                totalView.setText("Total:" + String.format("%.2f", total));
+
+                Item item = new Item("Soup", 2.00);
+
+                boolean inList = false;
+
+                if(itemList.size() == 0) {
+                    itemList.add(item);
+                }
+                else{
+                    for (Item i : itemList) {
+                        if (i.getName().equals("Soup")) {
+                            i.setQuantity(i.getQuantity() + 1);
+                            inList = true;
+                        }
+                    }
+
+                    if(!inList){
+                        itemList.add(item);
+                    }
+                }
+            }
+        });
+
+        btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout = findViewById(R.id.itemLayout);
+                layout.addView(createNewTextView("Coke:\t\t1.55"));
+                total += 1.55;
+                totalView = findViewById(R.id.totalView);
+                totalView.setText("Total:" + String.format("%.2f", total));
+
+                Item item = new Item("Coke", 1.55);
+
+                boolean inList = false;
+
+                if(itemList.size() == 0) {
+                    itemList.add(item);
+                }
+                else{
+                    for (Item i : itemList) {
+                        if (i.getName().equals("Coke")) {
+                            i.setQuantity(i.getQuantity() + 1);
+                            inList = true;
+                        }
+                    }
+
+                    if(!inList){
+                        itemList.add(item);
+                    }
+                }
+            }
+        });
+
+        btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout = findViewById(R.id.itemLayout);
+                layout.addView(createNewTextView("Corn:\t\t0.45"));
+                total += 0.45;
+                totalView = findViewById(R.id.totalView);
+                totalView.setText("Total:" + String.format("%.2f", total));
+
+                Item item = new Item("Corn", 0.45);
+
+                boolean inList = false;
+
+                if(itemList.size() == 0) {
+                    itemList.add(item);
+                }
+                else{
+                    for (Item i : itemList) {
+                        if (i.getName().equals("Corn")) {
+                            i.setQuantity(i.getQuantity() + 1);
+                            inList = true;
+                        }
+                    }
+
+                    if(!inList){
+                        itemList.add(item);
+                    }
+                }
+            }
+        });
+
+        btn8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout = findViewById(R.id.itemLayout);
+                layout.addView(createNewTextView("Juice:\t\t1.39"));
+                total += 1.39;
+                totalView = findViewById(R.id.totalView);
+                totalView.setText("Total:" + String.format("%.2f", total));
+
+                Item item = new Item("Juice", 1.39);
+
+                boolean inList = false;
+
+                if(itemList.size() == 0) {
+                    itemList.add(item);
+                }
+                else{
+                    for (Item i : itemList) {
+                        if (i.getName().equals("Juice")) {
+                            i.setQuantity(i.getQuantity() + 1);
+                            inList = true;
+                        }
+                    }
+
+                    if(!inList){
+                        itemList.add(item);
+                    }
+                }
+            }
+        });
+
+        btn9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout = findViewById(R.id.itemLayout);
+                layout.addView(createNewTextView("Sauce:\t\t1.85"));
+                total += 1.85;
+                totalView = findViewById(R.id.totalView);
+                totalView.setText("Total:" + String.format("%.2f", total));
+
+                Item item = new Item("Sauce", 1.85);
+
+                boolean inList = false;
+
+                if(itemList.size() == 0) {
+                    itemList.add(item);
+                }
+                else{
+                    for (Item i : itemList) {
+                        if (i.getName().equals("Sauce")) {
+                            i.setQuantity(i.getQuantity() + 1);
+                            inList = true;
+                        }
+                    }
+
+                    if(!inList){
+                        itemList.add(item);
+                    }
+                }
+            }
+        });
+
+        btn10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout = findViewById(R.id.itemLayout);
+                layout.addView(createNewTextView("Tomato:\t\t0.30"));
+                total += 0.30;
+                totalView = findViewById(R.id.totalView);
+                totalView.setText("Total:" + String.format("%.2f", total));
+
+                Item item = new Item("Tomato", 0.30);
+
+                boolean inList = false;
+
+                if(itemList.size() == 0) {
+                    itemList.add(item);
+                }
+                else{
+                    for (Item i : itemList) {
+                        if (i.getName().equals("Tomato")) {
+                            i.setQuantity(i.getQuantity() + 1);
+                            inList = true;
+                        }
+                    }
+
+                    if(!inList){
+                        itemList.add(item);
+                    }
+                }
+            }
+        });
+
+        btn11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout = findViewById(R.id.itemLayout);
+                layout.addView(createNewTextView("Bread:\t\t2.19"));
+                total += 2.19;
+                totalView = findViewById(R.id.totalView);
+                totalView.setText("Total:" + String.format("%.2f", total));
+
+                Item item = new Item("Bread", 2.19);
+
+                boolean inList = false;
+
+                if(itemList.size() == 0) {
+                    itemList.add(item);
+                }
+                else{
+                    for (Item i : itemList) {
+                        if (i.getName().equals("Bread")) {
+                            i.setQuantity(i.getQuantity() + 1);
+                            inList = true;
+                        }
+                    }
+
+                    if(!inList){
+                        itemList.add(item);
+                    }
+                }
+            }
+        });
+
+        btn12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout = findViewById(R.id.itemLayout);
+                layout.addView(createNewTextView("Butter:\t\t2.59"));
+                total += 2.59;
+                totalView = findViewById(R.id.totalView);
+                totalView.setText("Total:" + String.format("%.2f", total));
+
+                Item item = new Item("Butter", 2.59);
+
+                boolean inList = false;
+
+                if(itemList.size() == 0) {
+                    itemList.add(item);
+                }
+                else{
+                    for (Item i : itemList) {
+                        if (i.getName().equals("Butter")) {
+                            i.setQuantity(i.getQuantity() + 1);
+                            inList = true;
+                        }
+                    }
+
+                    if(!inList){
+                        itemList.add(item);
+                    }
+                }
+            }
+        });
+
         checkoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ShopActivity.this, CheckoutActivity.class);
+                intent.putExtra("VENDOR", vendor);
                 Bundle args = new Bundle();
                 args.putSerializable("ARRAYLIST", (Serializable)itemList);
                 intent.putExtra("BUNDLE", args);

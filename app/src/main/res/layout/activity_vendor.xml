@@ -9,45 +9,44 @@
     <include layout="@layout/header"/>
 
     <TextView
-        android:id="@+id/checkoutQuestion"
+        android:id="@+id/vendorQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What Payment Method Are You Using?"
+        android:text="Where Would You Like To Shop?"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/cashBtn"
+        app:layout_constraintBottom_toTopOf="@+id/tescoBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/cashBtn"
+        android:id="@+id/tescoBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cash"
-        app:layout_constraintBottom_toTopOf="@+id/cardBtn"
+        android:text="Tesco"
+        app:layout_constraintBottom_toTopOf="@+id/supervalueBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkoutQuestion" />
+        app:layout_constraintTop_toBottomOf="@id/vendorQuestion" />
 
     <Button
-        android:id="@+id/cardBtn"
+        android:id="@+id/supervalueBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Card"
-        app:layout_constraintBottom_toTopOf="@id/checkoutTotal"
+        android:text="Supervalue"
+        app:layout_constraintBottom_toTopOf="@id/centraBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cashBtn" />
+        app:layout_constraintTop_toBottomOf="@id/tescoBtn" />
 
-    <TextView
-        android:id="@+id/checkoutTotal"
+    <Button
+        android:id="@+id/centraBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total: 0.00"
-        android:textSize="20dp"
+        android:text="Centra"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardBtn" />
+        app:layout_constraintTop_toBottomOf="@id/supervalueBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

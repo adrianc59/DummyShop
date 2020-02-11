@@ -6,62 +6,53 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CheckoutActivity extends AppCompatActivity {
+public class RescanActivity extends AppCompatActivity {
 
-    private TextView checkoutTotal;
-    private Button cashBtn;
-    private Button cardBtn;
+    private Button rescanBtn;
+    private Button finishBtn;
 
     private String vendor;
-    private double total;
     private ArrayList<Item> itemList;
+    private double total;
+    private String paymentType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checkout);
+        setContentView(R.layout.activity_rescan);
 
         Intent intent = getIntent();
         vendor = intent.getStringExtra("VENDOR");
         Bundle args = intent.getBundleExtra("BUNDLE");
         itemList = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
         total = intent.getDoubleExtra("TOTAL", 0);
+        paymentType = intent.getStringExtra("PAYMENT_TYPE");
 
-        checkoutTotal = findViewById(R.id.checkoutTotal);
-        checkoutTotal.setText("Total: " + String.format("%.2f", total));
+        rescanBtn = findViewById(R.id.rescanBtn);
+        finishBtn = findViewById(R.id.finishBtn);
 
-        cashBtn = findViewById(R.id.cashBtn);
-        cardBtn = findViewById(R.id.cardBtn);
-
-        cashBtn.setOnClickListener(new View.OnClickListener() {
+        rescanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CheckoutActivity.this, PrintOptionActivity.class);
+                Intent intent = new Intent(RescanActivity.this, ScanActivity.class);
                 intent.putExtra("VENDOR", vendor);
                 Bundle args = new Bundle();
                 args.putSerializable("ARRAYLIST", (Serializable)itemList);
                 intent.putExtra("BUNDLE", args);
                 intent.putExtra("TOTAL", total);
-                intent.putExtra("PAYMENT_TYPE", 0);
+                intent.putExtra("PAYMENT_TYPE", paymentType);
                 startActivity(intent);
             }
         });
 
-        cardBtn.setOnClickListener(new View.OnClickListener() {
+        finishBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CheckoutActivity.this, PrintOptionActivity.class);
-                intent.putExtra("VENDOR", vendor);
-                Bundle args = new Bundle();
-                args.putSerializable("ARRAYLIST", (Serializable)itemList);
-                intent.putExtra("BUNDLE", args);
-                intent.putExtra("TOTAL", total);
-                intent.putExtra("paymentType", 1);
+                Intent intent = new Intent(RescanActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

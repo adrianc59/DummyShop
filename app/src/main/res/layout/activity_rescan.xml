@@ -4,50 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CheckoutActivity">
+    tools:context=".PrintOptionActivity">
 
     <include layout="@layout/header"/>
 
     <TextView
-        android:id="@+id/checkoutQuestion"
+        android:id="@+id/rescanQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What Payment Method Are You Using?"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/cashBtn"
+        app:layout_constraintBottom_toTopOf="@+id/rescanBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        android:text="Did You Receive Your Receipt?"
+        android:textSize="20dp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/cashBtn"
+        android:id="@+id/rescanBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cash"
-        app:layout_constraintBottom_toTopOf="@+id/cardBtn"
+        android:text="Rescan"
+        app:layout_constraintBottom_toTopOf="@+id/finishBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkoutQuestion" />
+        app:layout_constraintTop_toBottomOf="@+id/rescanQuestion" />
 
     <Button
-        android:id="@+id/cardBtn"
+        android:id="@+id/finishBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Card"
-        app:layout_constraintBottom_toTopOf="@id/checkoutTotal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cashBtn" />
-
-    <TextView
-        android:id="@+id/checkoutTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total: 0.00"
-        android:textSize="20dp"
+        android:text="Finish"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardBtn" />
-
+        app:layout_constraintTop_toBottomOf="@+id/rescanBtn"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
