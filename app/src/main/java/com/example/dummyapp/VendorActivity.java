@@ -15,6 +15,7 @@ public class VendorActivity extends AppCompatActivity {
     private Button tescoBtn;
     private Button supervalueBtn;
     private Button centraBtn;
+    private Button currysBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class VendorActivity extends AppCompatActivity {
         tescoBtn = findViewById(R.id.tescoBtn);
         supervalueBtn = findViewById(R.id.supervalueBtn);
         centraBtn = findViewById(R.id.centraBtn);
+        currysBtn = findViewById(R.id.currysBtn);
 
         tescoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +50,15 @@ public class VendorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(VendorActivity.this, ShopActivity.class);
                 intent.putExtra("VENDOR", centraBtn.getText().toString());
+                startActivity(intent);
+            }
+        });
+
+        currysBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(VendorActivity.this, Shop2Activity.class);
+                intent.putExtra("VENDOR", currysBtn.getText().toString());
                 startActivity(intent);
             }
         });

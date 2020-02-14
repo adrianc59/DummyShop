@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
         <service
             android:name=".HostCardEmulatorService"
             android:exported="true"
@@ -46,31 +47,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".VendorActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ShopActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
+        <activity
+            android:name=".Shop2Activity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".CheckoutActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".PrintOptionActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".ScanActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".RescanActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
     </application>
 
 </manifest>

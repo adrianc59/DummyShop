@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -46,6 +47,13 @@ public class PrintOptionActivity extends AppCompatActivity {
                 intent.putExtra("TOTAL", total);
                 intent.putExtra("PAYMENT_TYPE", "Cash");
                 startActivity(intent);
+            }
+        });
+
+        paperBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Wrong option", Toast.LENGTH_LONG).show();
             }
         });
     }
