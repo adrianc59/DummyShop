@@ -141,8 +141,8 @@ public class ScanActivity extends AppCompatActivity {
             httpParams.put("item_quantitys", itemQuantities);
 
             //Add generated barcode
-
             JSONObject jsonObject = httpJsonParser.makeHttpRequest("https://mysql03.comp.dkit.ie/D00198128/addReceiptPOS.php", "POST", httpParams);
+
             try {
                 success = jsonObject.getInt("success");
                 //if insertion fails *set something*

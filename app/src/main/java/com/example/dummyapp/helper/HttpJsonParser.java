@@ -44,8 +44,6 @@ public class HttpJsonParser {
                 urlObj = new URL(url);
                 urlConnection = (HttpURLConnection) urlObj.openConnection();
                 urlConnection.setRequestMethod(method);
-
-
             } else {
                 urlObj = new URL(url);
                 urlConnection = (HttpURLConnection) urlObj.openConnection();
