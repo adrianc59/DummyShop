@@ -34,8 +34,13 @@ public class ScanActivity extends AppCompatActivity {
     private String currentDateTime;
     private ArrayList<Item> itemList;
     private double total;
-    private String paymentType;
+    private int paymentType;
     private String uuidString;
+
+    private String barcode = "002432546754486754430211";
+    private String cashier = "Sean Irwin";
+    private Double cash;
+    private String location = "My house";
 
     private ProgressDialog pDialog;
     private int success;
@@ -61,10 +66,12 @@ public class ScanActivity extends AppCompatActivity {
         Bundle args = intent.getBundleExtra("BUNDLE");
         itemList = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
         total = intent.getDoubleExtra("TOTAL", 0);
-        paymentType = intent.getStringExtra("PAYMENT_TYPE");
+        paymentType = intent.getIntExtra("PAYMENT_TYPE", 0);
 
         currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         currentDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+
+        cash = total;
 
         UUID uuid = UUID.randomUUID();
         uuidString = uuid.toString();
@@ -140,7 +147,11 @@ public class ScanActivity extends AppCompatActivity {
             httpParams.put("item_prices", itemPrices);
             httpParams.put("item_quantitys", itemQuantities);
 
-            //Add generated barcode
+            httpParams.put("barcode", barcode);
+            httpParams.put("transaction_type", String.valueOf(paymentType));
+            httpParams.put("cashier", cashier);
+            httpParams.put("cash_given", String.valueOf(cash));
+            httpParams.put("location", location);
 
             JSONObject jsonObject = httpJsonParser.makeHttpRequest("https://mysql03.comp.dkit.ie/D00198128/addReceiptPOS.php", "POST", httpParams);
             try {

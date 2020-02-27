@@ -61,7 +61,7 @@ public class CheckoutActivity extends AppCompatActivity {
                 args.putSerializable("ARRAYLIST", (Serializable)itemList);
                 intent.putExtra("BUNDLE", args);
                 intent.putExtra("TOTAL", total);
-                intent.putExtra("paymentType", 1);
+                intent.putExtra("PAYMENT_TYPE", 1);
                 startActivity(intent);
             }
         });
