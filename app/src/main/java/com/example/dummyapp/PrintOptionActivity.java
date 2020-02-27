@@ -17,7 +17,7 @@ public class PrintOptionActivity extends AppCompatActivity {
     private Button paperBtn;
 
     private String vendor;
-    private String paymentType;
+    private int paymentType;
     private ArrayList<Item> itemList;
     private double total;
 
@@ -31,7 +31,7 @@ public class PrintOptionActivity extends AppCompatActivity {
         Bundle args = intent.getBundleExtra("BUNDLE");
         itemList = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
         total = intent.getDoubleExtra("TOTAL", 0);
-        paymentType = intent.getStringExtra("PAYMENT_TYPE");
+        paymentType = intent.getIntExtra("PAYMENT_TYPE", 0);
 
         popBtn = findViewById(R.id.popBtn);
         paperBtn = findViewById(R.id.paperBtn);
@@ -45,7 +45,7 @@ public class PrintOptionActivity extends AppCompatActivity {
                 args.putSerializable("ARRAYLIST", (Serializable)itemList);
                 intent.putExtra("BUNDLE", args);
                 intent.putExtra("TOTAL", total);
-                intent.putExtra("PAYMENT_TYPE", "Cash");
+                intent.putExtra("PAYMENT_TYPE", paymentType);
                 startActivity(intent);
             }
         });
