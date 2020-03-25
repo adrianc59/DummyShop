@@ -30,6 +30,8 @@ public class ShopActivity extends AppCompatActivity {
     private Button checkoutBtn;
 
     private String vendor;
+    private double lat;
+    private double lng;
 
     private LinearLayout layout;
     private double total;
@@ -44,6 +46,8 @@ public class ShopActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         vendor = intent.getStringExtra("VENDOR");
+        lat = intent.getDoubleExtra("LAT", 0);
+        lng = intent.getDoubleExtra("LNG", 0);
 
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
@@ -444,6 +448,8 @@ public class ShopActivity extends AppCompatActivity {
                 args.putSerializable("ARRAYLIST", (Serializable)itemList);
                 intent.putExtra("BUNDLE", args);
                 intent.putExtra("TOTAL", total);
+                intent.putExtra("LNG", lng);
+                intent.putExtra("LAT", lat);
                 startActivity(intent);
             }
         });

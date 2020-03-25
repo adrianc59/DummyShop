@@ -18,6 +18,8 @@ public class CheckoutActivity extends AppCompatActivity {
     private Button cardBtn;
 
     private String vendor;
+    private double lat;
+    private double lng;
     private double total;
     private ArrayList<Item> itemList;
 
@@ -31,6 +33,8 @@ public class CheckoutActivity extends AppCompatActivity {
         Bundle args = intent.getBundleExtra("BUNDLE");
         itemList = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
         total = intent.getDoubleExtra("TOTAL", 0);
+        lat = intent.getDoubleExtra("LAT", 0);
+        lng = intent.getDoubleExtra("LNG", 0);
 
         checkoutTotal = findViewById(R.id.checkoutTotal);
         checkoutTotal.setText("Total: " + String.format("%.2f", total));
@@ -48,6 +52,8 @@ public class CheckoutActivity extends AppCompatActivity {
                 intent.putExtra("BUNDLE", args);
                 intent.putExtra("TOTAL", total);
                 intent.putExtra("PAYMENT_TYPE", 0);
+                intent.putExtra("LNG", lng);
+                intent.putExtra("LAT", lat);
                 startActivity(intent);
             }
         });
@@ -62,6 +68,8 @@ public class CheckoutActivity extends AppCompatActivity {
                 intent.putExtra("BUNDLE", args);
                 intent.putExtra("TOTAL", total);
                 intent.putExtra("PAYMENT_TYPE", 1);
+                intent.putExtra("LNG", lng);
+                intent.putExtra("LAT", lat);
                 startActivity(intent);
             }
         });

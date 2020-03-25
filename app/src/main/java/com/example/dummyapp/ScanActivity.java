@@ -41,8 +41,8 @@ public class ScanActivity extends AppCompatActivity {
     private String cashier = "Sean Irwin";
     private Double cash;
     private String location = "My house";
-    private String lng = "";
-    private String lat = "";
+    private double lng;
+    private double lat;
 
     private ProgressDialog pDialog;
     private int success;
@@ -65,8 +65,9 @@ public class ScanActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         vendor = intent.getStringExtra("VENDOR");
-        lng = intent.getStringExtra("LNG");
-        lat = intent.getStringExtra("LAT");
+        lat = intent.getDoubleExtra("LAT", 0);
+        lng = intent.getDoubleExtra("LNG", 0);
+
         Bundle args = intent.getBundleExtra("BUNDLE");
         itemList = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
         total = intent.getDoubleExtra("TOTAL", 0);
@@ -156,19 +157,22 @@ public class ScanActivity extends AppCompatActivity {
             httpParams.put("cashier", cashier);
             httpParams.put("cash_given", String.valueOf(cash));
             httpParams.put("location", location);
-            httpParams.put("lng", lng);
-            httpParams.put("lat", lat);
-            
+            httpParams.put("lng", String.valueOf(lng));
+            httpParams.put("lat", String.valueOf(lat));
+
+            System.out.println("LAT: " + lat);
+            System.out.println("LNG: " + lng);
 
             JSONObject jsonObject = httpJsonParser.makeHttpRequest("https://mysql03.comp.dkit.ie/D00198128/addReceiptPOS.php", "POST", httpParams);
             try {
                 success = jsonObject.getInt("success");
                 //if insertion fails *set something*
                 if(success == 1){
+
                 }
-                //if insertion successful *set something*
                 else{
                     errorMessage = jsonObject.getString("message");
+                    System.out.println("ERROR: " + errorMessage);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

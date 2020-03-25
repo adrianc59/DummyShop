@@ -18,7 +18,7 @@ public class RescanActivity extends AppCompatActivity {
     private String vendor;
     private ArrayList<Item> itemList;
     private double total;
-    private String paymentType;
+    private int paymentType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class RescanActivity extends AppCompatActivity {
         Bundle args = intent.getBundleExtra("BUNDLE");
         itemList = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
         total = intent.getDoubleExtra("TOTAL", 0);
-        paymentType = intent.getStringExtra("PAYMENT_TYPE");
+        paymentType = intent.getIntExtra("PAYMENT_TYPE", 0);
 
         rescanBtn = findViewById(R.id.rescanBtn);
         finishBtn = findViewById(R.id.finishBtn);

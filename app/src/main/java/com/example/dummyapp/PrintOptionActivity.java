@@ -20,6 +20,8 @@ public class PrintOptionActivity extends AppCompatActivity {
     private int paymentType;
     private ArrayList<Item> itemList;
     private double total;
+    private double lat;
+    private double lng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,8 @@ public class PrintOptionActivity extends AppCompatActivity {
         itemList = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
         total = intent.getDoubleExtra("TOTAL", 0);
         paymentType = intent.getIntExtra("PAYMENT_TYPE", 0);
+        lat = intent.getDoubleExtra("LAT", 0);
+        lng = intent.getDoubleExtra("LNG", 0);
 
         popBtn = findViewById(R.id.popBtn);
         paperBtn = findViewById(R.id.paperBtn);
@@ -46,6 +50,8 @@ public class PrintOptionActivity extends AppCompatActivity {
                 intent.putExtra("BUNDLE", args);
                 intent.putExtra("TOTAL", total);
                 intent.putExtra("PAYMENT_TYPE", paymentType);
+                intent.putExtra("LNG", lng);
+                intent.putExtra("LAT", lat);
                 startActivity(intent);
             }
         });
