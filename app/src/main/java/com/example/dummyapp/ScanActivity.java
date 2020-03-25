@@ -174,17 +174,7 @@ public class ScanActivity extends AppCompatActivity {
             pDialog.dismiss();
             runOnUiThread(new Runnable() {
                 public void run() {
-                    if (success == 1) {
-                        //Display success message(if needed)
-
-                        //if success what happens next
-                        //Intent i = new Intent(RegisterActivity.this, RecentTransactionsActivity.class);
-                        //i.putExtra("user_id", user.getId());
-                        //startActivity(i);
-                        //Finish ths activity and go back to listing activity
-
-                        //finish();
-                    } else {
+                    if (success != 1) {
                         System.out.println("error : " + errorMessage.toString());
                         Toast.makeText(ScanActivity.this,errorMessage,Toast.LENGTH_LONG).show();
                     }
