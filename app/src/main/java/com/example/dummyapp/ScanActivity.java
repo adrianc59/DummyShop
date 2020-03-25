@@ -41,6 +41,8 @@ public class ScanActivity extends AppCompatActivity {
     private String cashier = "Sean Irwin";
     private Double cash;
     private String location = "My house";
+    private String lng = "";
+    private String lat = "";
 
     private ProgressDialog pDialog;
     private int success;
@@ -63,6 +65,8 @@ public class ScanActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         vendor = intent.getStringExtra("VENDOR");
+        lng = intent.getStringExtra("LNG");
+        lat = intent.getStringExtra("LAT");
         Bundle args = intent.getBundleExtra("BUNDLE");
         itemList = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
         total = intent.getDoubleExtra("TOTAL", 0);
@@ -152,6 +156,9 @@ public class ScanActivity extends AppCompatActivity {
             httpParams.put("cashier", cashier);
             httpParams.put("cash_given", String.valueOf(cash));
             httpParams.put("location", location);
+            httpParams.put("lng", lng);
+            httpParams.put("lat", lat);
+            
 
             JSONObject jsonObject = httpJsonParser.makeHttpRequest("https://mysql03.comp.dkit.ie/D00198128/addReceiptPOS.php", "POST", httpParams);
             try {

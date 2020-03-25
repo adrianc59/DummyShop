@@ -32,6 +32,8 @@ public class VendorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(VendorActivity.this, ShopActivity.class);
                 intent.putExtra("VENDOR", tescoBtn.getText().toString());
+                intent.putExtra("LNG", "53.998624");
+                intent.putExtra("LAT", "-6.404744");
                 startActivity(intent);
             }
         });
@@ -41,6 +43,8 @@ public class VendorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(VendorActivity.this, ShopActivity.class);
                 intent.putExtra("VENDOR", supervalueBtn.getText().toString());
+                intent.putExtra("LNG", "53.968857");
+                intent.putExtra("LAT", "-6.387873");
                 startActivity(intent);
             }
         });
@@ -50,6 +54,8 @@ public class VendorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(VendorActivity.this, ShopActivity.class);
                 intent.putExtra("VENDOR", centraBtn.getText().toString());
+                intent.putExtra("LNG", "53.830759");
+                intent.putExtra("LAT", "-6.394370");
                 startActivity(intent);
             }
         });
@@ -59,6 +65,8 @@ public class VendorActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(VendorActivity.this, Shop2Activity.class);
                 intent.putExtra("VENDOR", currysBtn.getText().toString());
+                intent.putExtra("LNG", "53.447480");
+                intent.putExtra("LAT", "-6.224073");
                 startActivity(intent);
             }
         });
