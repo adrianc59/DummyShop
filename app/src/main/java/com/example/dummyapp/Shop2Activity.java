@@ -24,6 +24,7 @@ public class Shop2Activity extends AppCompatActivity {
     private Button checkoutBtn;
 
     private String vendor;
+    private String location;
     private double lat;
     private double lng;
 
@@ -39,6 +40,7 @@ public class Shop2Activity extends AppCompatActivity {
 
         Intent intent = getIntent();
         vendor = intent.getStringExtra("VENDOR");
+        location = intent.getStringExtra("LOCATION");
         lat = intent.getDoubleExtra("LAT", 0);
         lng = intent.getDoubleExtra("LNG", 0);
 
@@ -181,6 +183,7 @@ public class Shop2Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Shop2Activity.this, CheckoutActivity.class);
                 intent.putExtra("VENDOR", vendor);
+                intent.putExtra("LOCATION", location);
                 Bundle args = new Bundle();
                 args.putSerializable("ARRAYLIST", (Serializable)itemList);
                 intent.putExtra("BUNDLE", args);

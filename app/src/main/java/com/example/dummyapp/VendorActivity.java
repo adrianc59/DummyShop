@@ -34,6 +34,7 @@ public class VendorActivity extends AppCompatActivity {
                 intent.putExtra("VENDOR", tescoBtn.getText().toString());
                 intent.putExtra("LNG", -6.404744);
                 intent.putExtra("LAT", 53.998624);
+                intent.putExtra("LOCATION", "Stapleton Drive, Parnell Park");
                 startActivity(intent);
             }
         });
@@ -45,6 +46,7 @@ public class VendorActivity extends AppCompatActivity {
                 intent.putExtra("VENDOR", supervalueBtn.getText().toString());
                 intent.putExtra("LNG", -6.387873);
                 intent.putExtra("LAT", 53.968857);
+                intent.putExtra("LOCATION", "Dublin Road, Mullagharlin, Dundalk");
                 startActivity(intent);
             }
         });
@@ -56,6 +58,7 @@ public class VendorActivity extends AppCompatActivity {
                 intent.putExtra("VENDOR", centraBtn.getText().toString());
                 intent.putExtra("LNG", -6.394370);
                 intent.putExtra("LAT", 53.830759);
+                intent.putExtra("LOCATION", "Main Street, Skibblemore, Dunleer");
                 startActivity(intent);
             }
         });
@@ -67,6 +70,7 @@ public class VendorActivity extends AppCompatActivity {
                 intent.putExtra("VENDOR", currysBtn.getText().toString());
                 intent.putExtra("LNG", -6.224073);
                 intent.putExtra("LAT", 53.447480);
+                intent.putExtra("LOCATION", "Airside Retail Park, Dublin");
                 startActivity(intent);
             }
         });

@@ -17,6 +17,7 @@ public class PrintOptionActivity extends AppCompatActivity {
     private Button paperBtn;
 
     private String vendor;
+    private String location;
     private int paymentType;
     private ArrayList<Item> itemList;
     private double total;
@@ -30,6 +31,7 @@ public class PrintOptionActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         vendor = intent.getStringExtra("VENDOR");
+        location = intent.getStringExtra("LOCATION");
         Bundle args = intent.getBundleExtra("BUNDLE");
         itemList = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
         total = intent.getDoubleExtra("TOTAL", 0);
@@ -45,6 +47,7 @@ public class PrintOptionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(PrintOptionActivity.this, ScanActivity.class);
                 intent.putExtra("VENDOR", vendor);
+                intent.putExtra("LOCATION", location);
                 Bundle args = new Bundle();
                 args.putSerializable("ARRAYLIST", (Serializable)itemList);
                 intent.putExtra("BUNDLE", args);

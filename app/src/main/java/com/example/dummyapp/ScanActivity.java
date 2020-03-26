@@ -40,7 +40,7 @@ public class ScanActivity extends AppCompatActivity {
     private String barcode = "002432546754486754430211";
     private String cashier = "Sean Irwin";
     private Double cash;
-    private String location = "My house";
+    private String location;
     private double lng;
     private double lat;
 
@@ -65,6 +65,7 @@ public class ScanActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         vendor = intent.getStringExtra("VENDOR");
+        location = intent.getStringExtra("LOCATION");
         lat = intent.getDoubleExtra("LAT", 0);
         lng = intent.getDoubleExtra("LNG", 0);
 
@@ -103,6 +104,7 @@ public class ScanActivity extends AppCompatActivity {
                     session.setScanned(false);
                     Intent intent = new Intent(ScanActivity.this, RescanActivity.class);
                     intent.putExtra("VENDOR", vendor);
+                    intent.putExtra("LOCATION", location);
                     Bundle args = new Bundle();
                     args.putSerializable("ARRAYLIST", (Serializable)itemList);
                     intent.putExtra("BUNDLE", args);
@@ -159,9 +161,6 @@ public class ScanActivity extends AppCompatActivity {
             httpParams.put("location", location);
             httpParams.put("lng", String.valueOf(lng));
             httpParams.put("lat", String.valueOf(lat));
-
-            System.out.println("LAT: " + lat);
-            System.out.println("LNG: " + lng);
 
             JSONObject jsonObject = httpJsonParser.makeHttpRequest("https://mysql03.comp.dkit.ie/D00198128/addReceiptPOS.php", "POST", httpParams);
             try {

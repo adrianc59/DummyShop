@@ -18,6 +18,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private Button cardBtn;
 
     private String vendor;
+    private String location;
     private double lat;
     private double lng;
     private double total;
@@ -30,6 +31,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         vendor = intent.getStringExtra("VENDOR");
+        location = intent.getStringExtra("LOCATION");
         Bundle args = intent.getBundleExtra("BUNDLE");
         itemList = (ArrayList<Item>) args.getSerializable("ARRAYLIST");
         total = intent.getDoubleExtra("TOTAL", 0);
@@ -47,6 +49,7 @@ public class CheckoutActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CheckoutActivity.this, PrintOptionActivity.class);
                 intent.putExtra("VENDOR", vendor);
+                intent.putExtra("LOCATION", location);
                 Bundle args = new Bundle();
                 args.putSerializable("ARRAYLIST", (Serializable)itemList);
                 intent.putExtra("BUNDLE", args);
@@ -63,6 +66,7 @@ public class CheckoutActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CheckoutActivity.this, PrintOptionActivity.class);
                 intent.putExtra("VENDOR", vendor);
+                intent.putExtra("LOCATION", location);
                 Bundle args = new Bundle();
                 args.putSerializable("ARRAYLIST", (Serializable)itemList);
                 intent.putExtra("BUNDLE", args);
